@@ -5,6 +5,41 @@ import { protect } from "../middleware/authMiddleware.js";
 
 /**
  * @openapi
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *           example: 60d5ecb8b5c9c62b3c7c1a10
+ *         firstName:
+ *           type: string
+ *           example: John
+ *         lastName:
+ *           type: string
+ *           example: Doe
+ *         email:
+ *           type: string
+ *           format: email
+ *           example: john.doe@example.com
+ *         isAdmin:
+ *           type: boolean
+ *           example: false
+ *         userType:
+ *           type: string
+ *           enum: [member, staff]
+ *           example: member
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ */
+
+/**
+ * @openapi
  * /api/users:
  *   get:
  *     summary: Get all users
@@ -23,7 +58,7 @@ import { protect } from "../middleware/authMiddleware.js";
  *       401:
  *         description: Unauthorized - Token missing or invalid
  */
-router.route("/").get(protect, getUsers);
+router.route("/").get(getUsers);
 
 /**
  * @openapi
