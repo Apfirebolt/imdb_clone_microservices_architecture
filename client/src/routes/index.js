@@ -19,6 +19,16 @@ const routes = [
         component: () => import('../views/Register.vue')
     },
     {
+        path: '/about',
+        name: 'About',
+        component: () => import('../views/About.vue')
+    },
+    {
+        path: '/movies',
+        name: 'Movies',
+        component: () => import('../views/Movies.vue')
+    },
+    {
         path: '/:catchAll(.*)',
         name: 'NotFound',
         component: NotFound
