@@ -1,9 +1,9 @@
 import app from "./app.js";
 import connectDB from "./config/db.js";
-// import { connectProducer } from "./server/utils/kafkaConnect.js";
+import { connectProducer } from "./utils/kafkaConnect.js";
 
 connectDB();
-// connectProducer();
+connectProducer();
 
 const PORT = process.env.PORT || 5000;
 

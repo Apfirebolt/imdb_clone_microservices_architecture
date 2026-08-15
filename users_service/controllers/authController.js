@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
+import { sendJson } from '../utils/kafkaConnect.js'
 import User from '../models/user.js'
 
 // @desc    Auth user & get token
@@ -48,6 +49,18 @@ const registerUser = asyncHandler(async (req, res) => {
   })
 
   if (user) {
+
+    // Send user data to Kafka topic
+    const userData = {
+      id: user._id.toString(),
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      userType: user.userType
+    };
+
+    await sendJson('imdb_clone_users', user._id.toString(), userData);
     res.status(201).json({
       _id: user._id,
       firstName: user.firstName,
