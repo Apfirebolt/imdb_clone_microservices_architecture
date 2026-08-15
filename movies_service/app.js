@@ -7,6 +7,7 @@ import swaggerSpec from "./config/swagger.js";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
 import userRoutes from "./routes/userRoutes.js";
+import playlistRoutes from "./routes/playlistRoutes.js";
 
 dotenv.config();
 
@@ -27,7 +28,7 @@ app.use(
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use("/api/users", userRoutes);
-
+app.use("/api/playlists", playlistRoutes);
 app.get("/", (req, res) => {
   res.send("API is running....");
 });
