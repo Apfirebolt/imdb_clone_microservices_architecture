@@ -33,12 +33,6 @@ const getSingleUser = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 
-//   // Check if the logged-in user is the same as the requested user or an admin
-//   if (req.user._id.toString() !== user._id.toString() && !req.user.isAdmin) {
-//     res.status(403);
-//     throw new Error("Not authorized to access this user's data");
-//   }
-
   res.status(200).json(user);
 });
 
